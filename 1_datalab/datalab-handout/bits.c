@@ -206,7 +206,6 @@ int negate(int x) {
  *   Rating: 3
  */
 int isAsciiDigit(int x) {
-  // return !((3 ^ (x << 4)) | ((0x3A ^ x) & (0x3B ^ x) & (0x3C ^ x) & (0x3D ^ x) & (0x3E ^ x) & (0x3F ^ x)));
   // x <= 0xff and x - 0x30 >= 0 and x - 0x3a < 0
   int x1 = x + ((~0x30) + 1);
   int x2 = x + ((~0x3a) + 1);
@@ -269,7 +268,7 @@ int logicalNeg(int x) {
  */
 int howManyBits(int x) {
   // binary search
-  // If the higher half part of x is non zero, the low part's length will be count.
+  // If the higher half part of x is non zero, the lower part's length will be count.
   int b16, b8, b4, b2, b1, b0;
   x = (x >> 31) ^ x; // remove the sign
   // 1 ~ 16 bits
