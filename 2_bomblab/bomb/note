@@ -1,0 +1,100 @@
+
+strings_not_equal(%rdi, %rsi): 
+    if s1 == s2. return 0
+    else return 1
+
+read_line:
+    read one single line
+
+read_six_numbers(%rdi, %rsi):
+    read six numbers and store them on:
+    &rsi +0, +4, +8, +12, +16, +20
+     , rcx, r8, r9, rsp, rsp + 8
+
+
+main:
+
+phase_1 (%rdi):
+    if input == %0x402400
+
+phase_2 (%rdi):
+    read_six_numbers(rdi, rsi) (x0 ~ x5)
+    x0 = 1
+    x1 = 2 * x0
+    x2 = 2 * x1
+    for (int i = 1; i < 6; ++i)
+        if (x[i] == (x[0] + x[0]))
+            continue;
+        else
+            boom!;
+
+phase_3 (%rdi):
+    read 2 integers in the format of "%d %d" into 0x8(%rsp) and 0xc(%rsp)
+    be careful that the size of x0 is 4 bytes
+    if x0 > 7, fail
+    the following is a switch statement, the address is stored in f75
+    for case 7, the value is 327
+    then the program will compare the number given in the case with x1,
+    if v == x1, success.
+
+phase_4
+    read 2 integers in the format of "%d %d" into 0x8(%rsp) and 0xc(%rsp)
+    be careful that the size of x0 is 4 bytes, assume we get x0 and x1.
+    if x0 > 14, fail
+    call x = func4(x0, 0, 14);
+    if x == 0 and x1 == 0, success.
+
+func4:
+    int func4(int x0, int x1, int x2) {
+        x2 -= x1;
+
+        if (x2 < 0)
+            x2 += 1;
+
+        x2 /= 2;
+        int c = x2 + x1;
+
+        if (c == x0)
+            return 0;
+
+        if (c > x0) {
+            x2 = c - 1;
+            return 2 * func4(x0, x1, x2);
+        } else {
+            x1 = c + 1;
+            return 2 * func4(x0, x1, x2) + 1;
+        }
+    }
+
+phase_5 (%rdi):
+    assume the input string is str
+    static s_str at 0x4024b0: maduiersnfotvbyl
+    the target string is t_str
+    if (strlen != 6)
+        boom!;
+    for (int i = 0; i < 6; ++i) {
+        char c = str[i];
+        c &= 0xf;
+        t_str = s_str[c];
+    }
+    if (t_str == "flyers")
+        success.
+
+    9 15 14 5 6 7 + 96 = ionefg
+
+phase_6 (%rdi):
+    two arrays on the stack!
+    
+    read x0 ~ x5
+
+    m = x
+    for (int i = 0; i < 6; ++i) {
+        if (x[i] - 1 > 5)
+            fail;
+        
+
+    }
+
+    if (*(x + 24) == )
+        fail;
+    
