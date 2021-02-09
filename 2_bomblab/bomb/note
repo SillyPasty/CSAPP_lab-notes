@@ -87,14 +87,116 @@ phase_6 (%rdi):
     
     read x0 ~ x5
 
-    m = x
+    static array, start from 0x6032d0
+    332, 168, 924, 691, 477, 443
+    int i = 0;
+    int *p1 = x;
+    while () {
+        rb = p1;
+        if (*p1 - 1 > 5)  (x[i] is unsigned number)
+            fail;
+        
+        ++i;
+        
+        if (i < 6) {
+            for (int j = i; j <= 5;++j) {
+                if (x[j] == x[i-1])
+                    fail;
+            }
+            p1 += 4;
+        } else {
+            goto 153
+        }
+    }
     for (int i = 0; i < 6; ++i) {
         if (x[i] - 1 > 5)
             fail;
-        
+        for (int j = i; j < 6; ++j)
+            if (x[j] == x[i])
+                fail;
+    } // x0 ~ x5 from 1 ~ 6 and are different.
+    153:
+    for (int i = 0; i < 6; ++i) {
+        x[i] = 7 - x[i];
+    }
+    goto: 197
+    // move the static_array on the stack
+    // with specific order
+    for (int i = 0; i < 6; ++i) {
+        if (x[i] <= 1) {    prev_x = 6
+            rdx = 0x6032d0
+            y[i] = rdx;
+        } else {            other_x
+            int a = 1;
+            rdx = 0x6032d0
+            do {
+                rdx = *(rdx + 8);
+                a += 1;
+            } while (a != x[i])
+            y[i] = rdx;
+        }
+    }
+    197:
+        i1 = 0;
+        int c = x[i1 * 4];
+        if (c <= 1) {
+                goto 183:
+                183:
+                rdx = 0x6032d0
+                188:
+                y[i1] = rdx(address);
+                i1 += 4;
+                if (i1 == 24)
+                    goto 1ab:??
+                if (x[i1 * 4] <= 1)
+                    goto 183:
+                else {
+                
+                }
+        }
+        a = 1
+        rdx = 0x6032d0
+        goto: 176
+    176:
+        rdx = *(rdx + 8);
+        a += 1;
+        if (a != c)
+            goto 176
+        goto: 188
+    
+    1ab:    // useless???
+        rb = y[0]
+        rax = &y[1]
+        rsi = &[6]
+        rc = rb
 
+        for (int i = 1; i < 6; ++i) {
+            y[i] = y[i];
+        }
+        rd = *rax
+        *(rc + 8) = rd
+        rax += 8
+        rc = rd
+    
+    1d2:
+        y[5] = 0
+        rbp = 5
+
+        ra = *(rb + 8)
+        ra = *ra
+
+        if (*rb < rax)
+            fail;
+
+        rb = rb + 8;
+        rbp -= 1;
+        
+        y[5] = 0;
+    for (int i = 0; i < 5; ++i) {
+        if (x[i + 1] > x[i])
+            fail;
     }
 
-    if (*(x + 24) == )
-        fail;
+
+        
     
