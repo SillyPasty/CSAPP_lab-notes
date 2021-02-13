@@ -1,0 +1,18 @@
+
+Level1:
+    touch at 0x4017c0
+    the prev address is stored on rsp + 0x28
+    we need a string to fill the 40 bytes and change the address with 4 bytes
+
+level2: use push to change the return address of the code
+level3: to protect the injection string from the random moving, put the char in test's stack frame
+level4: 
+    put the cookie on the top of the stack
+    then pop and mov
+    pop %rax  58
+    mov %rax  48 89 c7
+
+    we can find 58 90 c3 in addval_219 and 48 89 c7 c3 in addval_273
+    their address are 0x401917ab, 0x401917a2
+
+    pop -> cookie -> mov -> touch2
